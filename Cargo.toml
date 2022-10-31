@@ -7,6 +7,7 @@ edition = "2021"
 
 [dependencies]
 anyhow = "1.0"
+dirs = "4.0.0"
 trying = { version = "0.5", features = [ "serde" ] }
 rustyline = "10.0.0"
 
