@@ -95,11 +95,11 @@ fn main() -> Result<()> {
                 }
             }
             Err(ReadlineError::Interrupted) => {
-                println!("ctrl-c");
+                println!("terminating...");
                 break;
             }
             Err(ReadlineError::Eof) => {
-                println!("ctrl-d");
+                println!("terminating...");
                 break;
             }
             Err(err) => {
