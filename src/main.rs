@@ -94,11 +94,7 @@ fn main() -> Result<()> {
                     }
                 }
             }
-            Err(ReadlineError::Interrupted) => {
-                println!("terminating...");
-                break;
-            }
-            Err(ReadlineError::Eof) => {
+            Err(ReadlineError::Interrupted) | Err(ReadlineError::Eof) => {
                 println!("terminating...");
                 break;
             }
