@@ -5,7 +5,7 @@ use std::path::{Path, PathBuf};
 
 use anyhow::Result;
 use rustyline::error::ReadlineError;
-use rustyline::Editor;
+use rustyline::DefaultEditor;
 use trying::trie::TrieString;
 
 // The output is wrapped in a Result to allow matching on errors
@@ -60,8 +60,7 @@ fn main() -> Result<()> {
         trie.atoms()
     );
 
-    // `()` can be used when no completer is required
-    let mut rl = Editor::<()>::new()?;
+    let mut rl = DefaultEditor::new()?;
     if let Some(file_location) = get_history_file() {
         if let Err(e) = rl.load_history(&file_location) {
             println!("error loading history: {}", e);
@@ -75,7 +74,7 @@ fn main() -> Result<()> {
                 if line.is_empty() {
                     continue;
                 }
-                rl.add_history_entry(line.as_str());
+                rl.add_history_entry(line.as_str())?;
                 if trie.contains(line.chars()) {
                     println!("ok");
                 } else {
